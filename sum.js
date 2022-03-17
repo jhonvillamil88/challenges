@@ -1,24 +1,15 @@
-function sum(x){
-    if(!x){
-        return (f)=>{
-            return f(print(0));
-        };
+function sum(a) {
+    if(typeof a == "function"){
+        return a(`prints: -> 0`);
     }
-    return (y)=>{
-        if(typeof y != 'number'){
-            return y(print(x));
-        }
-        return (k)=>{
-            if(typeof k != 'number')return k(print(x+y));
-            return (f)=>{
-                return f(print(x+y+k));
-            }
-        };
-    };
-  }
+    return b => b === undefined ? a : sum(((typeof b !="number")?b(`prints: -> ${a}`):a+b));
+}
 
-  function print(text){
-    return `prints: -> ${text}`;
-  }
-  
-  module.exports = sum;
+ 
+
+
+sum(result=>{console.log("-> ",result)});
+sum(1)(result=>console.log("-> ",result));
+// sum(1)(2)(result=>console.log("-> ",result));
+// sum(2)(3)(6)(result=>{console.log("-> ",result)});
+module.exports = sum;
