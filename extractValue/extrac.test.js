@@ -177,4 +177,31 @@ test('four', ()=>{
 });
 
 
+test('five', ()=>{
+    const example = extract({
+        someObject:{
+            uuid:1,
+            innerOne:{
+                someKey:"some text"
+            },
+            innerTwo:{
+                uuid:2,
+                innerThree:{
+                    someOtherKey:"some other text",
+                    innerFour:{
+                        uuid:3
+                    }
+                }
+            }
+        }
+    },"uuid");
+    const expected = new Map([
+        ["someObject" , 1],
+        ["someObject/innerTwo" , 2],
+        ["someObject/innerTwo/innerThree/innerFour" , 3]
+    ]);
+    expect(example).toEqual(expected);
+});
+
+
 
